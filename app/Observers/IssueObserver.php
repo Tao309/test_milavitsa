@@ -60,7 +60,6 @@ class IssueObserver
         }
 
 
-
         if(!empty($mailObject))
         {
             try {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\Issue;
+use App\models\TelegramBot;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -77,6 +78,9 @@ class IssueController extends Controller
 
         if($issue)
         {
+            //Отправляем сообщение в телеграм
+            new TelegramBot('You have new Issue');
+
             return redirect()
                 ->route('issue.edit', $issue->id)
                 ->with(['success' => 'Issue created']);
