@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::resource('issues', 'IssueController')->names('issue');
+
+//Route::get('issues', 'IssueController@list')->name('issue.list');
+//Route::get('addIssue', 'IssueController@add')->name('issue.add');
+//
+//Route::post('addIssue', 'IssueController@add')->name('issue.add');
