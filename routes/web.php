@@ -21,11 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::resource('issues', 'IssueController')->names('issue');
+Route::resource('issues', 'IssueController')->names('issue')->middleware('auth.required');
+Route::put('takeInWork/{id}', 'IssueController@takeInWork')->name('issue.takeInWork')->where(['id' => '[0-9]+'])->middleware('auth.required');
 
-//Route::get('issues', 'IssueController@list')->name('issue.list');
-//Route::get('addIssue', 'IssueController@add')->name('issue.add');
-//
-Route::put('takeInWork/{id}', 'IssueController@takeInWork')->name('issue.takeInWork')->where(['id' => '[0-9]+']);
-
-//Route::delete('/{id}', ['uses' => 'UserController@delete'])->where(['id' => '[0-9]+']);
