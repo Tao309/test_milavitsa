@@ -6,7 +6,7 @@ php artisan migrate
 ### Запустить cиды:
 php artisan db:seed --class=UsersTableSeeder
 
-### Заполнить .env:
+### Заполнить .env для отправки писем:
 - MAIL_DRIVER=smtp
 - MAIL_HOST=smtp.mailtrap.io
 - MAIL_PORT=2525
@@ -14,6 +14,9 @@ php artisan db:seed --class=UsersTableSeeder
 - MAIL_PASSWORD=null
 - MAIL_ENCRYPTION=null
 
+### Данные менеджеров:
+- johnvoid@gmail.com - 123456
+- mikegreen@gmail.com - 123456
 
 
 # Тестовое задание Laravel-программист
