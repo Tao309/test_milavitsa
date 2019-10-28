@@ -89,6 +89,10 @@ class IssueController extends Controller
             return redirect()->route('home');
         }
         $issue = Issue::where('id', $id)->with('author')->first();
+        if(empty($issue))
+        {
+            return redirect()->route('issue.index');
+        }
 
         return view('issue.edit', compact('issue'));
     }

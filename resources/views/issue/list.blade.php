@@ -31,8 +31,8 @@
                         <td>{{$issue->title}}</td>
                         <th scope="col">{{ $inwork }}</th>
                         <th scope="col">{{ $closed }}</th>
-                        <td><a href="{{ route('issue.show', $issue->id) }}">Open</a></td>
-                        <td><a href="{{ route('issue.edit', $issue->id) }}">Edit</a></td>
+                        <td><a class="btn btn-light" href="{{ route('issue.show', $issue->id) }}">Open</a></td>
+                        <td><a class="btn btn-primary" href="{{ route('issue.edit', $issue->id) }}">Edit</a></td>
                         <td>{{ $issue->author->name }}</td>
                     </tr>
                 @endforeach
