@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\Issue;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -53,6 +54,22 @@ class IssueController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
+        //Создание заявки не чаще раза в сутки
+        $date = new Carbon();
+        $date->modify('-1 day');
+
+        $existsIssue = Issue::with('author')
+            ->where('author_id', Auth::user()->id)
+            ->where('created_at', '>', $date->format('Y-m-d H:i:s'))
+            ->orderByDesc('id')->get();
+
+        if($existsIssue)
+        {
+            return back()
+                ->withErrors(['msg' => 'Please, wait 1 day for create new issue'])
+                ->withInput();
+        }
+
         $data = $request->input();
         $data['author_id'] = Auth::user()->id;
 
@@ -67,7 +84,7 @@ class IssueController extends Controller
         else
         {
             return back()
-                ->withErrors(['msg' => 'Ошибка при создании'])
+                ->withErrors(['msg' => 'Error create'])
                 ->withInput();
         }
     }
