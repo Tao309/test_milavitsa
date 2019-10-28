@@ -87,7 +87,7 @@
                                 <label for="file" class="col-md-4 col-form-label text-md-right">Answer</label>
 
                                 <div class="col-md-6">
-                                    <input id="answer" type="text" class="form-control @error('answer') is-invalid @enderror" name="answer" value="{{ $issue->answer }}" required autocomplete="current-message"/>
+                                    <input id="answer" type="text" class="form-control @error('answer') is-invalid @enderror" name="answer" value="{{ $issue->answer }}" autocomplete="current-message"/>
                                 </div>
                             </div>
 
@@ -95,8 +95,10 @@
                                 <label for="file" class="col-md-4 col-form-label text-md-right">Closed</label>
 
                                 <div class="col-md-6">
-                                    <div class="custom-control-inline custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="closed" name="closed">
+                                    <div class="custom-control-inline custom-control custom-checkbox">@php
+                                            $checked = ($issue->closed) ? 'checked' : '';
+                                        @endphp
+                                        <input type="checkbox" class="custom-control-input" id="closed" name="closed" value="1" {{ $checked }}/>
                                         <label class="custom-control-label" for="closed"></label>
                                     </div>
                                 </div>
@@ -106,7 +108,10 @@
 
                                 <div class="col-md-6">
                                     <div class="custom-control-inline custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="inwork" name="inwork">
+                                        @php
+                                            $checked = ($issue->inwork) ? 'checked' : '';
+                                        @endphp
+                                        <input type="checkbox" class="custom-control-input" id="inwork" name="inwork" value="1" {{ $checked }}/>
                                         <label class="custom-control-label" for="inwork"></label>
                                     </div>
                                 </div>

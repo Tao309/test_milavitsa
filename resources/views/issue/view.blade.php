@@ -42,6 +42,16 @@
                         {{ $closed }}
                     </td>
                 </tr>
+                <tr>
+                    @php
+                        $class = (!empty(trim($issue->answer))) ? 'table-success' : 'table-active';
+                    @endphp
+
+                    <td class="{{ $class }}">Answer</td>
+                    <td>
+                        {{ $issue->answer }}
+                    </td>
+                </tr>
             </table>
         </div>
     </div>

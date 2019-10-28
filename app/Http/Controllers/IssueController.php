@@ -135,6 +135,8 @@ class IssueController extends Controller
         if(Auth::user()->role != 'manager' && isset($data['answer']))
         {
             unset($data['answer']);
+            unset($data['closed']);
+            unset($data['inwork']);
         }
 
         $result = $issue->fill($data)->save();

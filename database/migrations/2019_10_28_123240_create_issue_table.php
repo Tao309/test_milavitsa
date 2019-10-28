@@ -18,6 +18,7 @@ class CreateIssueTable extends Migration
             $table->string('title', 50);
             $table->text('message')->nullable();
             $table->text('file')->nullable();
+            $table->text('answer')->nullable();
             $table->smallInteger('inwork')->default(0);
             $table->smallInteger('closed')->default(0);
             $table->bigInteger('author_id')->unsigned()->default(0);
