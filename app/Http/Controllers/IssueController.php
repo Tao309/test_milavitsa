@@ -15,11 +15,6 @@ class IssueController extends Controller
      */
     public function index()
     {
-        if(Auth::guest())
-        {
-            return redirect()->route('home');
-        }
-
         if(Auth::user()->role == 'manager')
         {
             $issues = Issue::with('author')
@@ -42,11 +37,6 @@ class IssueController extends Controller
      */
     public function create()
     {
-        if(Auth::guest())
-        {
-            return redirect()->route('home');
-        }
-
         $issue = new Issue();
         return view('issue.edit', compact('issue'));
     }
@@ -100,10 +90,6 @@ class IssueController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::guest())
-        {
-            return redirect()->route('issue.index');
-        }
         $issue = Issue::where('id', $id)->with('author')->first();
         if(empty($issue))
         {
