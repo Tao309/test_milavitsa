@@ -22,6 +22,7 @@ class CreateIssueTable extends Migration
             $table->smallInteger('inwork')->default(0);
             $table->smallInteger('closed')->default(0);
             $table->bigInteger('author_id')->unsigned()->default(0);
+            $table->bigInteger('manager_id')->unsigned()->default(0);
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('users');

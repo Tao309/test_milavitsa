@@ -22,7 +22,7 @@
                     @php
                         /**  @var \App\models\Issue $issue */
 
-                        $inwork = ($issue->inwork) ? 'Yes' : 'No';
+                        $inwork = (!empty($issue->manager->id)) ? 'Yes' : 'No';
                         $closed = ($issue->closed) ? 'Yes' : 'No';
                     @endphp
 
@@ -37,7 +37,6 @@
                     </tr>
                 @endforeach
             </table>
-
         </div>
     </div>
 

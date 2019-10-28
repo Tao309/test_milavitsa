@@ -7,7 +7,7 @@
             @php
                 /**  @var \App\models\Issue $issue */
 
-                $inwork = ($issue->inwork) ? 'Yes' : 'No';
+                $inwork = (!empty($issue->manager->id)) ? 'Yes' : 'No';
                 $closed = ($issue->closed) ? 'Yes' : 'No';
             @endphp
 
@@ -31,7 +31,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="table-active">InWork</td>
+                    @php
+                        $class = (!empty($issue->manager->id)) ? 'table-success' : 'table-active';
+                    @endphp
+                    <td class="{{ $class }}">InWork</td>
                     <td>
                         {{ $inwork }}
                     </td>
@@ -54,5 +57,11 @@
                 </tr>
             </table>
         </div>
+
+        <form method="POST" action="{{ route('issue.takeInWork', $issue->id) }}">
+            @method('PUT')
+            @csrf
+            <button type="submit" class="btn btn-primary btn-success">Take In Work</button>
+        </form>
     </div>
 @endsection

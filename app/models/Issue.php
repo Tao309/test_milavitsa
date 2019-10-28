@@ -11,4 +11,8 @@ class Issue extends Model
     {
         return $this->belongsTo(User::class, 'author_id', 'id');
     }
+    public function manager()
+    {
+        return $this->belongsTo(User::class, 'manager_id', 'id');
+    }
 }

@@ -102,7 +102,7 @@ class IssueController extends Controller
     {
         if(Auth::guest())
         {
-            return redirect()->route('home');
+            return redirect()->route('issue.index');
         }
         $issue = Issue::where('id', $id)->with('author')->first();
         if(empty($issue))
@@ -177,6 +177,29 @@ class IssueController extends Controller
             return back()
                 ->withErrors(['msg' => 'Delete error!']);
         }
+    }
+
+    public function takeInWork($id)
+    {
+        if(Auth::user()->role != 'manager')
+        {
+            return redirect()
+                ->route('issue.show', $id);
+        }
+
+        $issue = Issue::find($id);
+        if(empty($issue))
+        {
+            return redirect()
+                ->route('issue.show', $id);
+        }
+
+        $issue->manager_id = Auth::user()->id;
+        $issue->save();
+
+        return redirect()
+            ->route('issue.show', $id)
+            ->with(['success' => 'Issue take in work']);
     }
 
 }
