@@ -90,21 +90,8 @@
                                     <input id="answer" type="text" class="form-control @error('answer') is-invalid @enderror" name="answer" value="{{ $issue->answer }}" autocomplete="current-message"/>
                                 </div>
                             </div>
-
-                            <div class="form-group row">
-                                <label for="file" class="col-md-4 col-form-label text-md-right">Closed</label>
-
-                                <div class="col-md-6">
-                                    <div class="custom-control-inline custom-control custom-checkbox">@php
-                                            $checked = ($issue->closed) ? 'checked' : '';
-                                        @endphp
-                                        <input type="checkbox" class="custom-control-input" id="closed" name="closed" value="1" {{ $checked }}/>
-                                        <label class="custom-control-label" for="closed"></label>
-                                    </div>
-                                </div>
-                            </div>
                         @endif
-                        
+
                             <div class="form-group row">
                                 <label for="file" class="col-md-4 col-form-label text-md-right">Closed</label>
 
@@ -112,6 +99,7 @@
                                     <div class="custom-control-inline custom-control custom-checkbox">@php
                                             $checked = ($issue->closed) ? 'checked' : '';
                                         @endphp
+                                        <input type="checkbox" name="closed" value="0" hidden checked/>
                                         <input type="checkbox" class="custom-control-input" id="closed" name="closed" value="1" {{ $checked }}/>
                                         <label class="custom-control-label" for="closed"></label>
                                     </div>

@@ -1,3 +1,21 @@
+# Для первого запуска
+
+### Запустить миграции:
+php artisan migrate
+
+### Запустить cиды:
+php artisan db:seed --class=UsersTableSeeder
+
+### Заполнить .env:
+- MAIL_DRIVER=smtp
+- MAIL_HOST=smtp.mailtrap.io
+- MAIL_PORT=2525
+- MAIL_USERNAME=null
+- MAIL_PASSWORD=null
+- MAIL_ENCRYPTION=null
+
+
+
 # Тестовое задание Laravel-программист
 
 ## Необходимо реализовать систему приёма и обработки заявок в техническую поддержку на

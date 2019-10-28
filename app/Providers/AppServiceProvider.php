@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\models\Issue;
+use App\Observers\IssueObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -25,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        Issue::observe(IssueObserver::class);
     }
 }
