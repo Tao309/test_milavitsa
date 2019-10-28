@@ -57,13 +57,20 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="file" class="col-md-4 col-form-label text-md-right">File</label>
 
-                                <div class="col-md-6">
-                                    <input id="file" type="file" class="form-control @error('file') is-invalid @enderror" name="file" autocomplete="current-file"/>
-                                </div>
+
+                <div class="form-group row">
+                    <label for="file" class="col-md-4 col-form-label text-md-right">File</label>
+
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="file">
+                                <label class="custom-file-label" for="file">Choose file</label>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
 
                     @if($issue->exists)
@@ -83,15 +90,37 @@
                                     <input id="answer" type="text" class="form-control @error('answer') is-invalid @enderror" name="answer" value="{{ $issue->answer }}" required autocomplete="current-message"/>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="file" class="col-md-4 col-form-label text-md-right">Closed</label>
+
+                                <div class="col-md-6">
+                                    <div class="custom-control-inline custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="closed" name="closed">
+                                        <label class="custom-control-label" for="closed"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="file" class="col-md-4 col-form-label text-md-right">InWork</label>
+
+                                <div class="col-md-6">
+                                    <div class="custom-control-inline custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="inwork" name="inwork">
+                                        <label class="custom-control-label" for="inwork"></label>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     @endif
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
                                         @if($issue->exists)
+                                        <button type="submit" class="btn btn-primary btn-success">
                                             Save
                                         @else
+                                        <button type="submit" class="btn btn-primary">
                                             Add
                                         @endif
                                     </button>
@@ -105,7 +134,7 @@
                             <form method="POST" action="{{ route('issue.destroy', $issue->id) }}">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Delete Issue</button>
+                                <button type="submit" class="btn btn-primary btn-danger">Delete Issue</button>
                             </form>
                         @endif
                     </div>

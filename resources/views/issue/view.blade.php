@@ -2,25 +2,44 @@
 @section('content')
     <div class="container">
         <div class="content">
-            <h1>Issue: {{$issue->title}}</h1>
+            <div class="page-header"><h1>Issue: {{$issue->title}}</h1></div>
 
-            <table>
+            @php
+                /**  @var \App\models\Issue $issue */
+
+                $inwork = ($issue->inwork) ? 'Yes' : 'No';
+                $closed = ($issue->closed) ? 'Yes' : 'No';
+            @endphp
+
+            <table class="table">
                 <tr>
-                    <td>Title</td>
+                    <td class="table-active">Title</td>
                     <td>
                         {{$issue->title}}
                     </td>
                 </tr>
                 <tr>
-                    <td>Message</td>
+                    <td class="table-active">Message</td>
                     <td>
                         {{$issue->message}}
                     </td>
                 </tr>
                 <tr>
-                    <td>Author</td>
+                    <td class="table-active">Author</td>
                     <td>
                         {{$issue->author->name}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-active">InWork</td>
+                    <td>
+                        {{ $inwork }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-active">Closed</td>
+                    <td>
+                        {{ $closed }}
                     </td>
                 </tr>
             </table>

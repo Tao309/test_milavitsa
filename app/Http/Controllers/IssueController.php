@@ -143,17 +143,17 @@ class IssueController extends Controller
         {
             abort(403, 'Unauthorized action.');
         }
-        $result = Product::destroy($id);
+        $result = Issue::destroy($id);
         if($result)
         {
             return redirect()
-                ->route('shop.products.index')
-                ->with(['success' => 'Продукт удалён']);
+                ->route('issue.index')
+                ->with(['success' => 'Issue deleted']);
         }
         else
         {
             return back()
-                ->withErrors(['msg' => 'Ошибка при удалении']);
+                ->withErrors(['msg' => 'Delete error!']);
         }
     }
 
