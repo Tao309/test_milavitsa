@@ -15,7 +15,23 @@ class IssueController extends Controller
      */
     public function index()
     {
-        $issues = Issue::with('author')->orderByDesc('id')->get();
+        if(Auth::guest())
+        {
+            return redirect()->route('home');
+        }
+
+        if(Auth::user()->role == 'manager')
+        {
+            $issues = Issue::with('author')
+                ->orderByDesc('id')->get();
+        }
+        else
+        {
+            $issues = Issue::with('author')
+                ->where('author_id', Auth::user()->id)
+                ->orderByDesc('id')->get();
+        }
+
         return view('issue.list', compact('issues'));
     }
 
